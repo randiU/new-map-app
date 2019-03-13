@@ -1,0 +1,19 @@
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+h1 {
+	width: 100%;
+}
+
+.map {
+	display: block;
+	margin-top: 15px;
+}
+
+.list {
+	margin-left: 55%;
+	width: 100%;
+
+}

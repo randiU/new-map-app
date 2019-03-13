@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 class List extends Component {
 	render() {
+		const venues = this.props.venues;
 		return (
 			<div>
-				<p>This will be a list</p>
+				{venues.map(indVenue => (
+					<p>{indVenue.name}: Lat: {indVenue.lat}</p>
+					))}
 			</div>
 			)
 	}

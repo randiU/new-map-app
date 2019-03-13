@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MapContainer from '../components/Map';
 import List from '../components/List';
+import '../App.css'
+
 
 
 
@@ -24,14 +26,20 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Best of Boise: Nom Nom Nom</h1>
-        < MapContainer 
-          venues = {this.state.venues}
-        />
-        < List />
+      <div className="container">
+        <h1 className='ba br3'>Best of Boise: Nom Nom Nom</h1>
+        <div className="map">
+          < MapContainer 
+            venues = {this.state.venues}
+          />
+        </div>
+        <div className="list">
+          < List 
+            venues = {this.state.venues}
+          />
+        </div>
         <div>
-        <p>hi</p>
+          <p>hi</p>
         </div>
       </div>
     );
@@ -39,3 +47,4 @@ class App extends Component {
 }
 
 export default App;
+

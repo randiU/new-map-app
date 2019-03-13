@@ -4,8 +4,8 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 //styles for the map container - flexible
 const mapStyles = {
-  width: '75%',
-  height: '50%'
+  width: '50%',
+  height: '400px'
 };
 
 //you can pass this into the GoogleApiWrapper and it will show up if there is a delay in loading the map
@@ -27,14 +27,13 @@ export class MapContainer extends Component {
              		lng: -116.2053802
             		}}
 			    zoom={14}>
-			  <Marker
-			    title={'The marker`s title will appear as a tooltip.'}
-			    name={'SOMA'}
-			    position={{lat: 37.778519, lng: -122.405640}} />
-			  <Marker
-			    name={'Dolores park'}
-			    position={{lat: 37.759703, lng: -122.428093}} />
-			  <Marker />
+			  {venues.map(indVenue => (
+			  	<Marker 
+			  		name={indVenue.name}
+			  		position={{lat: indVenue.lat, lng: indVenue.lng }}
+			  	/>
+			  	))
+			  }
 			 </Map>
 			)
 	}
