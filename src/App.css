@@ -7,13 +7,13 @@ h1 {
 	width: 100%;
 }
 
-.map {
-	display: block;
-	margin-top: 15px;
+.containerMap {
+	/*display: none;*/
+	margin-left: 55%;
 }
 
-.list {
-	margin-left: 55%;
+.searchAndListContainer {
+	margin-left: 3%;
 	width: 100%;
 
 }
