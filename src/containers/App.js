@@ -27,29 +27,46 @@ class App extends Component {
 
     searchField: ''
   }
+
+  onSearchChange = (event) => {
+    this.setState({ searchField: event.target.value })
+  }
+
+
   render() {
-    return (
-      <div className="container">
-        <h1 className='ba br3'>Best of Boise: Nom Nom Nom</h1>
-        <div className="containerMap">
-          <div className="map">
-            <MapContainer 
-              venues = {this.state.venues}
-            />
+    const filteredVenues = this.state.venues.filter(venue => {
+      return venue.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+    })
+
+    if (this.state.venues.length === 0) {
+      return <h1>Loading</h1>
+    } else {
+        return (
+        <div className="container">
+          <h1 className='ba br3'>Best of Boise: Nom Nom Nom</h1>
+          <div className="containerMap">
+            <div className="map">
+              <MapContainer 
+                venues = {filteredVenues}
+              />
+            </div>
           </div>
+          <div className="searchAndListContainer">
+            <div className="searchBox">
+              <SearchBox 
+                searchChange={this.onSearchChange}
+              />
+            </div>
+            <div className="list">
+              <List 
+                venues = {filteredVenues}
+              />
+            </div>
+          </div>   
         </div>
-        <div className="searchAndListContainer">
-          <div className="searchBox">
-            <SearchBox />
-          </div>
-          <div className="list">
-            <List 
-              venues = {this.state.venues}
-            />
-          </div>
-        </div>   
-      </div>
-    );
+      );
+    }
+    
   }
 }
 
