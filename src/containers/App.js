@@ -4,9 +4,28 @@ import List from '../components/List';
 import SearchBox from '../components/SearchBox';
 import '../App.css'
 
+import { connect } from 'react-redux';
+import { setSearchField } from '../actions.js';
 
 
-
+const mapStateToProps = (state) => {
+  //we want to grab just the state information we are interested in for this component
+  //we get this information from our reducer.js file
+  return {
+    searchField: state.searchField
+  }
+}
+//dispatch is what triggers the action (actions are the objects that we created)
+//we need dispatch to send the action to our reducer
+const mapDispatchToProps = (dispatch) => {
+  //receives an event, it's the event from the search input when users type
+  //this will update the searchfield part of our store/state via an action,
+  //that sends the reducer the new user input and then updates the store
+  //event.target.value is the text from the user input
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+  }
+}
 
 class App extends Component {
 
@@ -33,11 +52,12 @@ class App extends Component {
   }
 
 
+
   render() {
     const filteredVenues = this.state.venues.filter(venue => {
       return venue.name.toLowerCase().includes(this.state.searchField.toLowerCase());
     })
-
+  
     if (this.state.venues.length === 0) {
       return <h1>Loading</h1>
     } else {
@@ -70,5 +90,8 @@ class App extends Component {
   }
 }
 
-export default App;
+//connect is going to run, and it will return another function and then we will run
+//App inside of that function
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
