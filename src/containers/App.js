@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch) => {
   //that sends the reducer the new user input and then updates the store
   //event.target.value is the text from the user input
   return {
+    // onSearchChange = (event) => {
+    // this.setState({ searchField: event.target.value })
+    // } WORKS THE SAME AS THE FUNCTION ABOVE
     onSearchChange: (event) => dispatch(setSearchField(event.target.value))
   }
 }
@@ -44,18 +47,14 @@ class App extends Component {
         lng: -116.20143784746583
       } ],
 
-    searchField: ''
-  }
-
-  onSearchChange = (event) => {
-    this.setState({ searchField: event.target.value })
   }
 
 
 
   render() {
+    const {searchField, onSearchChange} = this.props;
     const filteredVenues = this.state.venues.filter(venue => {
-      return venue.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+      return venue.name.toLowerCase().includes(searchField.toLowerCase());
     })
   
     if (this.state.venues.length === 0) {
@@ -74,7 +73,7 @@ class App extends Component {
           <div className="searchAndListContainer">
             <div className="searchBox">
               <SearchBox 
-                searchChange={this.onSearchChange}
+                searchChange={onSearchChange}
               />
             </div>
             <div className="list">
