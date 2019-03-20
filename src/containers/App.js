@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MapContainer from '../components/Map';
 import List from '../components/List';
 import SearchBox from '../components/SearchBox';
+import { createLogger } from 'redux-logger';
 import '../App.css'
 
 import { connect } from 'react-redux';

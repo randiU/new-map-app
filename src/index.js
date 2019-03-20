@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { createLogger} from 'redux-logger';
 
 import App from './containers/App';
 import 'tachyons';
 import { searchVenues } from './reducers';
 import * as serviceWorker from './serviceWorker';
 
+const logger = createLogger();
+
 //we need to create a store - js object that describes the state of our app
-const store = createStore(searchVenues);
+const store = createStore(searchVenues, applyMiddleware(logger));
 
 ReactDOM.render(
 	//we wrap the App in the provider component, and it will pass down the store 
