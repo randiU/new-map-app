@@ -30,7 +30,7 @@ export class MapContainer extends Component {
 			  {venues.map(indVenue => (
 			  	<Marker 
 			  		name={indVenue.name}
-			  		position={{lat: indVenue.lat, lng: indVenue.lng }}
+			  		position={{lat: indVenue.location.lat, lng: indVenue.location.lng }}
 			  	/>
 			  	))
 			  }

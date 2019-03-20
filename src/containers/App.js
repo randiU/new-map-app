@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import MapContainer from '../components/Map';
 import List from '../components/List';
 import SearchBox from '../components/SearchBox';
-import { createLogger } from 'redux-logger';
+
 import '../App.css'
 
 import { connect } from 'react-redux';
-import { setSearchField } from '../actions.js';
+import { setSearchField, requestVenues } from '../actions.js';
 
 
 const mapStateToProps = (state) => {
   //we want to grab just the state information we are interested in for this component
   //we get this information from our reducer.js file
   return {
-    searchField: state.searchField
+    searchField: state.searchVenues.searchField,
+    venues: state.requestVenues.venues,
+    isPending: state.requestVenues.isPending,
+    error: state.requestVenues.error
   }
 }
 //dispatch is what triggers the action (actions are the objects that we created)
@@ -27,38 +30,25 @@ const mapDispatchToProps = (dispatch) => {
     // onSearchChange = (event) => {
     // this.setState({ searchField: event.target.value })
     // } WORKS THE SAME AS THE FUNCTION ABOVE
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestVenues: () => dispatch(requestVenues())
   }
 }
 
 class App extends Component {
 
-  state = {
-    venues: [
-      { name: "Alia's Coffee House",
-        lat: 43.61649176843242,
-        lng: -116.2049893438631 
-      },
-      { name: "Dk Donuts",
-        lat: 43.62186775479125,
-        lng: -116.20658782073909
-      },
-      { name: "Guru Donuts",
-        lat: 43.616097384118554,
-        lng: -116.20143784746583
-      } ],
 
+  componentDidMount() {
+    this.props.onRequestVenues();
   }
 
-
-
   render() {
-    const {searchField, onSearchChange} = this.props;
-    const filteredVenues = this.state.venues.filter(venue => {
+    const {searchField, onSearchChange, venues, isPending} = this.props;
+    const filteredVenues = venues.filter(venue => {
       return venue.name.toLowerCase().includes(searchField.toLowerCase());
     })
   
-    if (this.state.venues.length === 0) {
+    if (isPending) {
       return <h1>Loading</h1>
     } else {
         return (
