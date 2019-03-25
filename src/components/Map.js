@@ -4,8 +4,9 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 //styles for the map container - flexible
 const mapStyles = {
-  width: '400px',
-  height: '400px'
+  width: '50%',
+  height: '400px',
+  margin: '0'
 };
 
 //you can pass this into the GoogleApiWrapper and it will show up if there is a delay in loading the map
@@ -15,6 +16,22 @@ const LoadingContainer = (props) => (
 
 //we imported Map from the google-maps-react library we added
 export class MapContainer extends Component {
+
+		onMarkerClick = (props, marker, e) =>
+	    this.setState({
+	      selectedPlace: props,
+	      activeMarker: marker,
+	      showingInfoWindow: true
+	    });
+
+	  onClose = props => {
+	    if (this.state.showingInfoWindow) {
+	      this.setState({
+	        showingInfoWindow: false,
+	        activeMarker: null
+	      });
+	    }
+	  };
 	
 	render() {
 		const venues = this.props.venues;

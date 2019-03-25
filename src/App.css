@@ -1,3 +1,10 @@
+body,html {
+	height: 100%;
+	width: 100%;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
 .container {
 	width: 100%;
 	height: 100%;
@@ -5,15 +12,46 @@
 
 h1 {
 	width: 100%;
+	text-align: center;
 }
 
 .containerMap {
-	/*display: none;*/
-	margin-left: 50%;
+	display: flex-wrap;
+	width: 50%;
+	height: 400px;
+	padding: .1px;
+
+}
+
+.map {
+	/*display: flex-wrap;
+	width: 50%;
+	height: 400px;
+	padding: .1px;
+	overflow: hidden;
+	margin-right: 0;*/
+	width: 100%;
+	height: 100%;
 }
 
 .searchAndListContainer {
-	margin-left: 3%;
+	position: relative;
+	padding-left: 54%;
+	height: 400px;
+	overflow: hidden;
+}
+
+.list {
+	height: 400px;
+	overflow: scroll;
+	
+}
+
+
+.searchBox {
+	position: relative;
+	z-index: 1;
 	width: 100%;
+	text-align: center;
 
 }

@@ -6,7 +6,7 @@ class List extends Component {
 		return (
 			<div>
 				{venues.map(indVenue => (
-					<p>{indVenue.name}: Lat: {indVenue.lat}</p>
+					<p>{indVenue.name}</p>
 					))}
 			</div>
 			)

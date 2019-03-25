@@ -54,12 +54,10 @@ class App extends Component {
         return (
         <div className="container">
           <h1 className='ba br3'>Best of Boise: Nom Nom Nom</h1>
-          <div className="containerMap">
-            <div className="map">
-              <MapContainer 
-                venues = {filteredVenues}
-              />
-            </div>
+          <div className="map">
+            <MapContainer 
+              venues = {filteredVenues}
+            />
           </div>
           <div className="searchAndListContainer">
             <div className="searchBox">
