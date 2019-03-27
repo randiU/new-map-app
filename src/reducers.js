@@ -2,7 +2,8 @@ import {
 	CHANGE_SEARCH_FIELD,
 	REQUEST_VENUES_PENDING, 
 	REQUEST_VENUES_SUCCESS,
-	REQUEST_VENUES_FAILED
+	REQUEST_VENUES_FAILED,
+	VENUE_CLICK
 } from './constants.js';
 
 //we need some kind of a start point so we add initialState
@@ -48,6 +49,21 @@ export const requestVenues = (state=initialStateVenues, action={}) => {
 			return Object.assign({}, state, {error: action.payload, isPending: false})
 		//if nothing matches the criteria(action.type) then we'll return the default state
 		default:
+			return state;
+	}
+}
+
+const initialStateOfClickedVenues = {
+	showingInfoWindow: false,
+	activeVenue: {},
+	activeVenueLocation: []
+}
+
+export const onVenueClick = (state=initialStateOfClickedVenues, action={}) => {
+	switch (action.type) {
+		case VENUE_CLICK: 
+			return Object.assign({}, state, {activeVenue: action.payload, activeVenueLocation: action.payload.location.address, showingInfoWindow: true})
+		default: 
 			return state;
 	}
 }

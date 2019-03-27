@@ -2,7 +2,8 @@ import {
 	CHANGE_SEARCH_FIELD,
 	REQUEST_VENUES_PENDING, 
 	REQUEST_VENUES_SUCCESS,
-	REQUEST_VENUES_FAILED
+	REQUEST_VENUES_FAILED,
+	VENUE_CLICK
 } from './constants.js'
 
 //searchfield is going to receive an input of text from what the user types
@@ -13,6 +14,8 @@ export const setSearchField = (text) => ({
 		payload: text
 })
 
+//this is a higher order function, that is going to return a function. We need to pass in dispatch
+//so we can use it in our requestVenues function
 export const requestVenues = () => (dispatch) => {
 	//we need to iniitally send out a pending dispatch
 	dispatch({ type: REQUEST_VENUES_PENDING });
@@ -24,3 +27,9 @@ export const requestVenues = () => (dispatch) => {
 		//if the request fails, then we return the payload which will be the error we received
 		.catch(error => dispatch({type: REQUEST_VENUES_FAILED, payload: error}))
 }
+
+
+export const venueClick = (venue) => ({
+	type: VENUE_CLICK,
+	payload: venue
+}) 

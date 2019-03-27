@@ -7,13 +7,13 @@ import thunkMiddleware from 'redux-thunk';
 
 import App from './containers/App';
 import 'tachyons';
-import { searchVenues, requestVenues } from './reducers';
+import { searchVenues, requestVenues, onVenueClick } from './reducers';
 import * as serviceWorker from './serviceWorker';
 
 const logger = createLogger();
 
 //in order for us to combine the reducers so we can use both of them, we need to utilize combineReducers fron redux
-const rootReducer = combineReducers({searchVenues, requestVenues});
+const rootReducer = combineReducers({searchVenues, requestVenues, onVenueClick});
 
 //we need to create a store - js object that describes the state of our app
 //thunkmiddleware is going to help us with our ajax calls. Needs to be called before logger 

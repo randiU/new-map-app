@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import MapContainer from '../components/Map';
 import List from '../components/List';
 import SearchBox from '../components/SearchBox';
+import VenueInformation from '../components/VenueInformation';
 
 import '../App.css'
 
 import { connect } from 'react-redux';
-import { setSearchField, requestVenues } from '../actions.js';
+import { setSearchField, requestVenues, venueClick } from '../actions.js';
 
 
 const mapStateToProps = (state) => {
@@ -16,7 +17,12 @@ const mapStateToProps = (state) => {
     searchField: state.searchVenues.searchField,
     venues: state.requestVenues.venues,
     isPending: state.requestVenues.isPending,
-    error: state.requestVenues.error
+    error: state.requestVenues.error,
+    // showingInfoWindow: state.onVenueClick.showingInfoWindow,
+    // activeMarker: state.onVenueClick.activeMarker
+    activeVenue: state.onVenueClick.activeVenue,
+    activeVenueLocation: state.onVenueClick.activeVenueLocation
+
   }
 }
 //dispatch is what triggers the action (actions are the objects that we created)
@@ -31,19 +37,20 @@ const mapDispatchToProps = (dispatch) => {
     // this.setState({ searchField: event.target.value })
     // } WORKS THE SAME AS THE FUNCTION ABOVE
     onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
-    onRequestVenues: () => dispatch(requestVenues())
+    onRequestVenues: () => dispatch(requestVenues()),
+    // venueClick: (venueItem) => dispatch(venueClick(venueItem))
   }
 }
 
 class App extends Component {
-
 
   componentDidMount() {
     this.props.onRequestVenues();
   }
 
   render() {
-    const {searchField, onSearchChange, venues, isPending} = this.props;
+    const {searchField, onSearchChange, venues, isPending, 
+      venueClick, showingInfoWindow, activeVenue, activeVenueLocation} = this.props;
     const filteredVenues = venues.filter(venue => {
       return venue.name.toLowerCase().includes(searchField.toLowerCase());
     })
@@ -53,10 +60,11 @@ class App extends Component {
     } else {
         return (
         <div className="container">
-          <h1 className='ba br3'>Best of Boise: Nom Nom Nom</h1>
+          <h1 className='ba br3'>{activeVenue.name}</h1>
           <div className="map">
             <MapContainer 
               venues = {filteredVenues}
+              // venueClick = {venueClick}
             />
           </div>
           <div className="searchAndListContainer">
@@ -70,7 +78,14 @@ class App extends Component {
                 venues = {filteredVenues}
               />
             </div>
-          </div>   
+          </div> 
+          <div>
+            <VenueInformation 
+              currentVenue = {activeVenue}
+              activeVenueLocation = {activeVenueLocation}
+
+            />
+          </div>  
         </div>
       );
     }
