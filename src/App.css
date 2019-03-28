@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+
 body,html {
 	height: 100%;
 	width: 100%;
@@ -14,6 +16,11 @@ body,html {
 h1 {
 	width: 100%;
 	text-align: center;
+}
+
+.main-header {
+	font-family: 'Indie Flower', cursive;
+	font-size: 300%;
 }
 
 .containerMap {
@@ -57,4 +64,10 @@ h1 {
 	width: 100%;
 	text-align: center;
 
+}
+
+.venue-info {
+	text-align: center;
+	font-family: 'Indie Flower', cursive;
+	font-size: 150%;
 }

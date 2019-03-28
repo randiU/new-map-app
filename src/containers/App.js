@@ -60,7 +60,7 @@ class App extends Component {
     } else {
         return (
         <div className="container">
-          <h1 className='ba br3'>{activeVenue.name}</h1>
+          <h1 className='ba br3 main-header'>Boise Loves Coffee & Donuts</h1>
           <div className="map">
             <MapContainer 
               venues = {filteredVenues}
@@ -83,7 +83,6 @@ class App extends Component {
             <VenueInformation 
               currentVenue = {activeVenue}
               activeVenueLocation = {activeVenueLocation}
-
             />
           </div>  
         </div>
