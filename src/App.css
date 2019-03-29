@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+@import url("https://fonts.googleapis.com/css?family=Abel|Fjalla+One");
+
 
 body,html {
 	height: 100%;
@@ -16,10 +18,12 @@ body,html {
 h1 {
 	width: 100%;
 	text-align: center;
+	text-shadow: 2px 2px #ddd2dd;
 }
 
 .main-header {
-	font-family: 'Indie Flower', cursive;
+	/*font-family: 'Indie Flower', cursive*/
+	font-family: 'Fjalla One', sans-serif;
 	font-size: 300%;
 }
 
@@ -42,6 +46,7 @@ h1 {
 	height: 100%;
 	position: relative;
 	z-index: 1;
+	padding-top: 8%;
 }
 
 .searchAndListContainer {
@@ -68,6 +73,19 @@ h1 {
 
 .venue-info {
 	text-align: center;
-	font-family: 'Indie Flower', cursive;
+	/*font-family: 'Indie Flower', cursive;*/
+	font-family: 'Abel', sans-serif;
 	font-size: 150%;
+}
+
+.nav-styles {
+	text-align: center;
+}
+
+.nav-tab {
+	text-align: center;
+}
+
+.venue-name {
+	background: linear-gradient(white,#f6f4f7);
 }

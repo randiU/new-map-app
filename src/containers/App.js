@@ -3,6 +3,7 @@ import MapContainer from '../components/Map';
 import List from '../components/List';
 import SearchBox from '../components/SearchBox';
 import VenueInformation from '../components/VenueInformation';
+import Nav from '../components/Nav';
 
 import '../App.css'
 
@@ -60,7 +61,10 @@ class App extends Component {
     } else {
         return (
         <div className="container">
-          <h1 className='ba br3 main-header'>Boise Loves Coffee & Donuts</h1>
+          <h1 className='main-header'>Boise Loves Coffee & Donuts</h1>
+          <Nav 
+            className='nav-styles'
+          />
           <div className="map">
             <MapContainer 
               venues = {filteredVenues}
@@ -80,7 +84,7 @@ class App extends Component {
             </div>
           </div> 
           <div>
-            <VenueInformation 
+            <VenueInformation className='venue-details'
               currentVenue = {activeVenue}
               activeVenueLocation = {activeVenueLocation}
             />
